@@ -6,6 +6,8 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 {
 	// GUI Text to display the gesture messages.
 	public GUIText GestureInfo;
+
+	public ZoomInOut zoomRef;
 	
 	// private bool to track if progress message has been displayed
 	private bool progressDisplayed;
@@ -16,6 +18,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
 	private bool swipeLeft;
 	private bool swipeRight;
+
 
 
     public bool IsZoomIn()
@@ -125,10 +128,16 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 		if((gesture == KinectGestures.Gestures.ZoomOut || gesture == KinectGestures.Gestures.ZoomIn) && progress > 0.5f)
 		{
 			string sGestureText = string.Format ("{0} detected, zoom={1:F1}%", gesture, screenPos.z * 100);
+
 			if(GestureInfo != null)
+            {
+				Debug.Log("CHECK: " + screenPos.z);
 				GestureInfo.GetComponent<GUIText>().text = sGestureText;
+				zoomRef.zoomValue = screenPos.z;
+			}
 			
 			progressDisplayed = true;
+
 		}
 		else if(gesture == KinectGestures.Gestures.Wheel && progress > 0.5f)
 		{
@@ -144,8 +153,9 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	                              KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
 	{
 		string sGestureText = gesture + " detected";
-		if(gesture == KinectGestures.Gestures.Click)
-			sGestureText += string.Format(" at ({0:F1}, {1:F1})", screenPos.x, screenPos.y);
+
+		//if(gesture == KinectGestures.Gestures.Click)
+		//	sGestureText += string.Format(" at ({0:F1}, {1:F1})", screenPos.x, screenPos.y);
 		
 		if(GestureInfo != null)
 			GestureInfo.GetComponent<GUIText>().text = sGestureText;

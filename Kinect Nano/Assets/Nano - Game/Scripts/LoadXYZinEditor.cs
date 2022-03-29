@@ -168,7 +168,7 @@ public class LoadXYZinEditor : MonoBehaviour
             for (int j = i + 1; j < numAtoms; j++)
             {
                 float dist = Vector3.Distance(atoms[i].transform.position, atoms[j].transform.position);
-                if (dist < types[atoms[i].name].bondLength)
+                if (dist < types[atoms[i].name].bondLength * atomParent.transform.localScale.x)
                 {
                     GameObject newBond = Instantiate(bondPrefab);
                     bonds.Add(newBond);

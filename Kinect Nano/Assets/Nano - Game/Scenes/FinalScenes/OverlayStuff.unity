@@ -628,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
       propertyPath: Player1Gestures.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
@@ -698,17 +698,17 @@ PrefabInstance:
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
       propertyPath: Player1Gestures.Array.data[6]
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
       propertyPath: Player1Gestures.Array.data[7]
-      value: 9
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
       propertyPath: Player1Gestures.Array.data[4]
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
@@ -1700,6 +1700,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  center: {x: 0, y: 0, z: 0}
   generalDataLoaded: 1
   BaseMaterial: {fileID: 2100000, guid: 374f7fc393e611f42b1b1c62a25ad445, type: 2}
   atomScale: 1
@@ -1732,6 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 30
+  molecule: {fileID: 1856121449}
 --- !u!1 &2086377466
 GameObject:
   m_ObjectHideFlags: 0

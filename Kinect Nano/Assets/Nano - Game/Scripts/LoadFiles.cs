@@ -47,11 +47,11 @@ public class LoadFiles : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightBracket) || simpleGestureListener.IsWave() || simpleGestureListener.isSwipeLeft())
+        if (Input.GetKeyDown(KeyCode.RightBracket) || simpleGestureListener.isRaiseLeft())
         {
             NextMol();
         }
-        if (Input.GetKeyDown(KeyCode.LeftBracket) || simpleGestureListener.isSwipeRight())
+        if (Input.GetKeyDown(KeyCode.LeftBracket) || simpleGestureListener.isRaiseRight())
         {
             PreviousMol();
         }

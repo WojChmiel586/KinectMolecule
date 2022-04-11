@@ -40,7 +40,7 @@ public class ZoomInOut : MonoBehaviour
         //    originalPos = new Vector3(0, 0, 0);
         //}
 
-        if (simpleGestureListener.IsJump())
+        if (simpleGestureListener.IsTpose())
         {
             isJump = !isJump;
             
@@ -48,7 +48,7 @@ public class ZoomInOut : MonoBehaviour
 
         if (isJump)
         {
-            if ((Input.GetMouseButtonDown(1)) || simpleGestureListener.IsZoomIn())
+            if ((Input.GetMouseButtonDown(1)) || simpleGestureListener.IsJump())
             {
                 isZoomed = !isZoomed;
             }

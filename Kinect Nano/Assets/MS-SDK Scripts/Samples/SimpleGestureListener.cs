@@ -16,8 +16,11 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
     private bool zoom;
     private bool wave;
 
+	private bool Tpose;
 	private bool swipeLeft;
 	private bool swipeRight;
+	private bool raiseLeft;
+	private bool raiseRight;
 
 
 
@@ -54,6 +57,35 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
         return false;
     }
+	public bool IsTpose()
+	{
+		if (Tpose)
+		{
+			Tpose = false;
+			return true;
+		}
+
+		return false;
+	}
+	public bool isRaiseLeft()
+	{
+		if (raiseLeft)
+		{
+			raiseLeft = false;
+			return true;
+		}
+		return false;
+	}
+	public bool isRaiseRight()
+	{
+		if (raiseRight)
+		{
+			raiseRight = false;
+			return true;
+		}
+		return false;
+	}
+
 	public bool isSwipeLeft()
 	{
         if (swipeLeft)
@@ -79,22 +111,23 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 		KinectManager manager = KinectManager.Instance;
 
 		manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
-        manager.DetectGesture(userId, KinectGestures.Gestures.ZoomIn);
-        //
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Wave);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
+		manager.DetectGesture(userId, KinectGestures.Gestures.ZoomIn);
+		manager.DetectGesture(userId, KinectGestures.Gestures.Wave);
         //manager.DetectGesture(userId, KinectGestures.Gestures.Tpose);
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
+		manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
+		manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
 
 
-        //		manager.DetectGesture(userId, KinectGestures.Gestures.Push);
-        //		manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
+		//		manager.DetectGesture(userId, KinectGestures.Gestures.Push);
+		//		manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
 
-        //		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
-        //		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
+		//		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
+		//		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
 
-        if (GestureInfo != null)
+		if (GestureInfo != null)
 		{
 			GestureInfo.text = "Move you hand to rotate the molecule.";
 		}
@@ -112,41 +145,45 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	                              float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
 	{
 
-		//GestureInfo.guiText.text = string.Format("{0} Progress: {1:F1}%", gesture, (progress * 100));
+        //GestureInfo.guiText.text = string.Format("{0} Progress: {1:F1}%", gesture, (progress * 100));
 
 
-		//if(gesture == KinectGestures.Gestures.Click && progress > 0.3f)
-		//{
-		//	string sGestureText = string.Format ("{0} {1:F1}% complete", gesture, progress * 100);
-		//	if(GestureInfo != null)
-		//		GestureInfo.GetComponent<GUIText>().text = sGestureText;
-			
-		//	progressDisplayed = true;
-		//}		
+        //if(gesture == KinectGestures.Gestures.Click && progress > 0.3f)
+        //{
+        //	string sGestureText = string.Format ("{0} {1:F1}% complete", gesture, progress * 100);
+        //	if(GestureInfo != null)
+        //		GestureInfo.GetComponent<GUIText>().text = sGestureText;
 
+        //	progressDisplayed = true;
+        //}		
 
-		if((gesture == KinectGestures.Gestures.ZoomOut || gesture == KinectGestures.Gestures.ZoomIn) && progress > 0.5f)
-		{
-			string sGestureText = string.Format ("{0} detected, zoom={1:F1}%", gesture, screenPos.z * 100);
+        if (zoomRef.isJump)
+        {
+			if ((gesture == KinectGestures.Gestures.ZoomOut || gesture == KinectGestures.Gestures.ZoomIn) && progress > 0.5f)
+			{
+				string sGestureText = string.Format("{0} detected, zoom={1:F1}%", gesture, screenPos.z * 100);
 
-			if(GestureInfo != null)
-            {
-				Debug.Log("CHECK: " + screenPos.z);
-				GestureInfo.GetComponent<GUIText>().text = sGestureText;
-				zoomRef.zoomValue = screenPos.z;
+				if (GestureInfo != null)
+				{
+					Debug.Log("CHECK: " + screenPos.z);
+					GestureInfo.GetComponent<GUIText>().text = sGestureText;
+					zoomRef.zoomValue = screenPos.z;
+
+				}
+
+				progressDisplayed = true;
+
 			}
-			
-			progressDisplayed = true;
+			else if (gesture == KinectGestures.Gestures.Wheel && progress > 0.5f)
+			{
+				string sGestureText = string.Format("{0} detected, angle={1:F1} deg", gesture, screenPos.z);
+				if (GestureInfo != null)
+					GestureInfo.GetComponent<GUIText>().text = sGestureText;
 
+				progressDisplayed = true;
+			}
 		}
-		else if(gesture == KinectGestures.Gestures.Wheel && progress > 0.5f)
-		{
-			string sGestureText = string.Format ("{0} detected, angle={1:F1} deg", gesture, screenPos.z);
-			if(GestureInfo != null)
-				GestureInfo.GetComponent<GUIText>().text = sGestureText;
-			
-			progressDisplayed = true;
-		}
+
     }
 
 	public bool GestureCompleted (uint userId, int userIndex, KinectGestures.Gestures gesture, 
@@ -177,7 +214,21 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 			swipeRight = true;
         }
 
-        return true;
+		if (gesture == KinectGestures.Gestures.RaiseLeftHand)
+		{
+			raiseLeft = true;
+		}
+
+		if (gesture == KinectGestures.Gestures.RaiseRightHand)
+		{
+			raiseRight = true;
+		}
+		if (gesture == KinectGestures.Gestures.Tpose)
+		{
+			Tpose = true;
+		}
+
+		return true;
 	}
 
 	public bool GestureCancelled (uint userId, int userIndex, KinectGestures.Gestures gesture, 

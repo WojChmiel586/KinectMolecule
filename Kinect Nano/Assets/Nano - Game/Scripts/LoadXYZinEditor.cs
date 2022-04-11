@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class AtomType
 {
@@ -25,6 +26,7 @@ public class LoadXYZinEditor : MonoBehaviour
 
     public GameObject[] atoms;
     public List<GameObject> bonds;
+    public Vector3 center;
 
     public string Filename
     {
@@ -135,10 +137,13 @@ public class LoadXYZinEditor : MonoBehaviour
             bonds.Clear();
         }
         int numAtoms = System.Convert.ToInt32(lines[0]);
+        Debug.Log("num of atoms: " + numAtoms);
 
         atoms = new GameObject[numAtoms];
 
         Vector3 avePos = Vector3.zero;
+        Vector3 currentScale = atomParent.transform.localScale;
+        atomParent.transform.localScale = Vector3.one;
 
         for (int i = 0; i < numAtoms; i++)
         {
@@ -168,7 +173,7 @@ public class LoadXYZinEditor : MonoBehaviour
             for (int j = i + 1; j < numAtoms; j++)
             {
                 float dist = Vector3.Distance(atoms[i].transform.position, atoms[j].transform.position);
-                if (dist < types[atoms[i].name].bondLength * atomParent.transform.localScale.x)
+                if (dist < types[atoms[i].name].bondLength)
                 {
                     GameObject newBond = Instantiate(bondPrefab);
                     bonds.Add(newBond);
@@ -183,5 +188,34 @@ public class LoadXYZinEditor : MonoBehaviour
                 }
             }
         }
+        transform.position = Vector3.zero;
+        center = GetCenter();
+        atomParent.transform.localScale = currentScale;
+        //SaveMolecule();
+        //AssetDatabase.CreateAsset(atoms[0], "Assets/test.asset");
+        //AssetDatabase.SaveAssets();
+
     }
+
+    public Vector3 GetCenter()
+    {
+        var rends = GetComponentsInChildren<Renderer>();
+        if (rends.Length == 0)
+            return transform.position;
+        var b = rends[0].bounds;
+        for (int i = 1; i < rends.Length; i++)
+        {
+           b.Encapsulate(rends[i].bounds);
+        }
+        return b.center;
+    }
+
+    void SaveMolecule()
+    {
+        //string localPath = "Assets/Nano - Game/Resources/SavedModels/" + objectName + ".prefab";
+        string localPath = "Assets/test.prefab";
+        localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+        PrefabUtility.SaveAsPrefabAssetAndConnect(atomParent, localPath, InteractionMode.UserAction);
+    }
+
 }

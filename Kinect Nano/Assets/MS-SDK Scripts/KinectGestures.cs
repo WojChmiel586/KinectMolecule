@@ -134,7 +134,7 @@ public class KinectGestures
 	{
 		Vector3 handPos = jointsPos[rightHandIndex];
 //		Vector3 elbowPos = jointsPos[rightElbowIndex];
-//		Vector3 shoulderPos = jointsPos[rightShoulderIndex];
+		//Vector3 shoulderPos = jointsPos[rightShoulderIndex];
 		bool calculateCoords = false;
 		
 		if(gestureData.joint == rightHandIndex)
@@ -150,7 +150,7 @@ public class KinectGestures
 			{
 				handPos = jointsPos[leftHandIndex];
 //				elbowPos = jointsPos[leftElbowIndex];
-//				shoulderPos = jointsPos[leftShoulderIndex];
+		//shoulderPos = jointsPos[leftShoulderIndex];
 				
 				calculateCoords = true;
 			}

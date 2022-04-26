@@ -42,36 +42,36 @@ public class ObjFromFile : MonoBehaviour
 
     }
 
-    void OnGUI()
-    {
-        objPath = GUI.TextField(new Rect(0, 0, 256, 32), objPath);
+    //void OnGUI()
+    //{
+    //    objPath = GUI.TextField(new Rect(0, 0, 256, 32), objPath);
 
-        GUI.Label(new Rect(0, 0, 256, 32), "Obj Path:");
-        if (GUI.Button(new Rect(256, 0, 64, 32), "Load File"))
-        {
-            DirectoryInfo d = new DirectoryInfo(objPath);//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.obj"); //Getting obj files
+    //    GUI.Label(new Rect(0, 0, 256, 32), "Obj Path:");
+    //    if (GUI.Button(new Rect(256, 0, 64, 32), "Load File"))
+    //    {
+    //        DirectoryInfo d = new DirectoryInfo(objPath);//Assuming Test is your Folder
+    //        FileInfo[] Files = d.GetFiles("*.obj"); //Getting obj files
 
-            foreach (FileInfo file in Files)
-            {
-                loadedObject = new OBJLoader().Load(objPath + file.Name);
-                loadedObject.tag = "Molecule";
+    //        foreach (FileInfo file in Files)
+    //        {
+    //            loadedObject = new OBJLoader().Load(objPath + file.Name);
+    //            loadedObject.tag = "Molecule";
 
-                //adds the script to the loaded object
-                System.Type MyScriptType = System.Type.GetType("PreviewObject" + ",Assembly-CSharp");
+    //            //adds the script to the loaded object
+    //            System.Type MyScriptType = System.Type.GetType("PreviewObject" + ",Assembly-CSharp");
 
-                loadedObject.AddComponent(MyScriptType);
-                myList.Add(loadedObject);
-                loadedObject.SetActive(false);
-            }
-            //gets the overlayer and loads the object so that it will follow your hand
-        }
+    //            loadedObject.AddComponent(MyScriptType);
+    //            myList.Add(loadedObject);
+    //            loadedObject.SetActive(false);
+    //        }
+    //        //gets the overlayer and loads the object so that it will follow your hand
+    //    }
 
-        if (!string.IsNullOrWhiteSpace(error))
-        {
-            GUI.color = Color.red;
-            GUI.Box(new Rect(0, 64, 256 + 64, 32), error);
-            GUI.color = Color.white;
-        }
-    }
+    //    if (!string.IsNullOrWhiteSpace(error))
+    //    {
+    //        GUI.color = Color.red;
+    //        GUI.Box(new Rect(0, 64, 256 + 64, 32), error);
+    //        GUI.color = Color.white;
+    //    }
+    //}
 }

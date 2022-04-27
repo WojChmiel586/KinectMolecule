@@ -4,12 +4,22 @@ using System;
 
 public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListenerInterface
 {
+	[Serializable]
+	public enum ApplicationState
+    {
+		Calibration,
+		Follow,
+		Locked,
+		Null
+    }
 	// GUI Text to display the gesture messages.
 	public GUIText GestureInfo;
+	public ApplicationState currentState { get; private set; }
 
 	public ZoomInOut zoomRef;
-	
+
 	// private bool to track if progress message has been displayed
+	KinectManager manager;
 	private bool progressDisplayed;
 
     private bool jump;
@@ -22,7 +32,8 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	private bool raiseLeft;
 	private bool raiseRight;
 
-
+	private uint activeUserId;
+	private int activeUserIndex;
 
     public bool IsZoomIn()
     {
@@ -108,29 +119,24 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	public void UserDetected(uint userId, int userIndex)
 	{
 		// as an example - detect these user specific gestures
-		KinectManager manager = KinectManager.Instance;
+		manager = KinectManager.Instance;
+		activeUserId = userId;
+		activeUserIndex = userIndex;
 
-		manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
-        //manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
-		manager.DetectGesture(userId, KinectGestures.Gestures.ZoomIn);
-		manager.DetectGesture(userId, KinectGestures.Gestures.Wave);
-        //manager.DetectGesture(userId, KinectGestures.Gestures.Tpose);
-		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
-		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
-		manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
-		manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.ZoomIn);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.Wave);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.Tpose);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.Push);
+		//manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
 
-
-		//		manager.DetectGesture(userId, KinectGestures.Gestures.Push);
-		//		manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
-
-		//		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
-		//		manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
-
-		if (GestureInfo != null)
-		{
-			GestureInfo.text = "Move you hand to rotate the molecule.";
-		}
+		//manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
+		//manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
 	}
 	
 	public void UserLost(uint userId, int userIndex)
@@ -170,6 +176,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 					zoomRef.zoomValue = screenPos.z;
 
 				}
+				currentState = currentState == ApplicationState.Follow ? ApplicationState.Locked : ApplicationState.Follow; 
 
 				progressDisplayed = true;
 
@@ -249,5 +256,35 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
         return true;
 	}
-	
+	public void SwitchState(ApplicationState newState)
+    {
+        switch (newState)
+        {
+            case ApplicationState.Calibration:
+
+
+				break;
+            case ApplicationState.Follow:
+				//Gestures to add
+				manager.DetectGesture(activeUserId, KinectGestures.Gestures.Jump);
+				//Gestures to remove
+				manager.DeleteGesture(activeUserId, KinectGestures.Gestures.RaiseLeftHand);
+				manager.DeleteGesture(activeUserId, KinectGestures.Gestures.RaiseRightHand);
+				manager.DeleteGesture(activeUserId, KinectGestures.Gestures.ZoomIn);
+
+				break;
+            case ApplicationState.Locked:
+				//Gestures to add
+				manager.DetectGesture(activeUserId, KinectGestures.Gestures.RaiseLeftHand);
+				manager.DetectGesture(activeUserId, KinectGestures.Gestures.RaiseRightHand);
+				manager.DetectGesture(activeUserId, KinectGestures.Gestures.ZoomIn);
+				//Gestures to remove
+
+                break;
+            case ApplicationState.Null:
+                break;
+            default:
+                break;
+        }
+    }
 }

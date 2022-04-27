@@ -66,6 +66,7 @@ public class ZoomInOut : MonoBehaviour
             gestureCam.GetComponent<KinectOverlayer>().enabled = false;
             kinectManager.ControlMouseCursor = !kinectManager.ControlMouseCursor;        
         }
+
         if (simpleGestureListener.IsZoomIn())
         {
 

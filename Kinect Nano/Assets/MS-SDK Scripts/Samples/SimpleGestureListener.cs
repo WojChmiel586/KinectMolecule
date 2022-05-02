@@ -1,26 +1,36 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
 public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListenerInterface
 {
 	[Serializable]
 	public enum ApplicationState
     {
+		NoUser,
 		Calibration,
 		Follow,
 		Locked,
 		Null
     }
 	// GUI Text to display the gesture messages.
-	public GUIText GestureInfo;
-	public ApplicationState currentState { get; private set; }
+	public Text GestureInfo;
+	[SerializeField]public ApplicationState currentState { get; private set; }
 
 	public ZoomInOut zoomRef;
 
 	// private bool to track if progress message has been displayed
 	KinectManager manager;
 	private bool progressDisplayed;
+	private KinectOverlayer overlayer;
+
+	[SerializeField]private GameObject NoUserText;
+	[SerializeField]private GameObject calibrationText;
+	[SerializeField]private GameObject FollowingText;
+	[SerializeField]private GameObject LockedText;
+
 
     private bool jump;
     private bool zoom;
@@ -35,6 +45,26 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	private uint activeUserId;
 	private int activeUserIndex;
 
+
+    private void Start()
+    {
+		NoUserText.SetActive(true);
+		overlayer = GetComponent<KinectOverlayer>();
+
+	}
+
+    private void Update()
+    {
+		Debug.Log(currentState);
+		IsTpose();
+        if (manager!= null)
+        {
+            if (manager.AllPlayersCalibrated && currentState == ApplicationState.Calibration)
+            {
+				SwitchState(ApplicationState.Follow);
+            }
+        }
+    }
     public bool IsZoomIn()
     {
         if (zoom)
@@ -50,7 +80,6 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
     {
         if (wave)
         {
-			Debug.Log("WAVE TRUE");
             wave = false;
             return true;
         }
@@ -62,7 +91,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
     {
         if (jump)
         {
-            jump = false;
+			jump = false;
             return true;
         }
 
@@ -72,6 +101,10 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	{
 		if (Tpose)
 		{
+			Debug.Log("TPOSE");
+
+			SwitchState(currentState == ApplicationState.Follow ? ApplicationState.Locked : ApplicationState.Follow);
+
 			Tpose = false;
 			return true;
 		}
@@ -119,31 +152,38 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	public void UserDetected(uint userId, int userIndex)
 	{
 		// as an example - detect these user specific gestures
-		manager = KinectManager.Instance;
+		Debug.Log("USER DETECTED");
+		SwitchState(ApplicationState.Calibration);
+		manager = GetComponent<KinectManager>();
+		manager.Player1Gestures.Add(KinectGestures.Gestures.Tpose);
 		activeUserId = userId;
 		activeUserIndex = userIndex;
 
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.ZoomIn);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Wave);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Tpose);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Push);
-		//manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Jump);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Squat);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.ZoomIn);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Wave);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Tpose);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.RaiseLeftHand);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.RaiseRightHand);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Push);
+        //manager.DetectGesture(userId, KinectGestures.Gestures.Pull);
 
-		//manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
-		//manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
+        //manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeUp);
+        //manager.DetectGesture(userId, KinectWrapper.Gestures.SwipeDown);
+        if (manager.AllPlayersCalibrated)
+        {
+			SwitchState(ApplicationState.Follow);
+        }
 	}
 	
 	public void UserLost(uint userId, int userIndex)
 	{
 		if(GestureInfo != null)
 		{
-			GestureInfo.GetComponent<GUIText>().text = string.Empty;
+			GestureInfo.text = string.Empty;
 		}
 	}
 
@@ -151,19 +191,19 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	                              float progress, KinectWrapper.NuiSkeletonPositionIndex joint, Vector3 screenPos)
 	{
 
-        //GestureInfo.guiText.text = string.Format("{0} Progress: {1:F1}%", gesture, (progress * 100));
+        GestureInfo.text = string.Format("{0} Progress: {1:F1}%", gesture, (progress * 100));
 
 
-        //if(gesture == KinectGestures.Gestures.Click && progress > 0.3f)
-        //{
-        //	string sGestureText = string.Format ("{0} {1:F1}% complete", gesture, progress * 100);
-        //	if(GestureInfo != null)
-        //		GestureInfo.GetComponent<GUIText>().text = sGestureText;
+        if (gesture == KinectGestures.Gestures.Click && progress > 0.3f)
+        {
+            string sGestureText = string.Format("{0} {1:F1}% complete", gesture, progress * 100);
+            if (GestureInfo != null)
+                GestureInfo.text = sGestureText;
 
-        //	progressDisplayed = true;
-        //}		
+            progressDisplayed = true;
+        }
 
-        if (zoomRef.isJump)
+        if (currentState == ApplicationState.Locked)
         {
 			if ((gesture == KinectGestures.Gestures.ZoomOut || gesture == KinectGestures.Gestures.ZoomIn) && progress > 0.5f)
 			{
@@ -171,12 +211,11 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
 				if (GestureInfo != null)
 				{
-					Debug.Log("CHECK: " + screenPos.z);
-					GestureInfo.GetComponent<GUIText>().text = sGestureText;
+					//Debug.Log("CHECK: " + screenPos.z);
+					GestureInfo.text = sGestureText;
 					zoomRef.zoomValue = screenPos.z;
 
 				}
-				currentState = currentState == ApplicationState.Follow ? ApplicationState.Locked : ApplicationState.Follow; 
 
 				progressDisplayed = true;
 
@@ -185,7 +224,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 			{
 				string sGestureText = string.Format("{0} detected, angle={1:F1} deg", gesture, screenPos.z);
 				if (GestureInfo != null)
-					GestureInfo.GetComponent<GUIText>().text = sGestureText;
+					GestureInfo.text = sGestureText;
 
 				progressDisplayed = true;
 			}
@@ -202,7 +241,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 		//	sGestureText += string.Format(" at ({0:F1}, {1:F1})", screenPos.x, screenPos.y);
 		
 		if(GestureInfo != null)
-			GestureInfo.GetComponent<GUIText>().text = sGestureText;
+			GestureInfo.text = sGestureText;
 		
 		progressDisplayed = false;
 
@@ -245,7 +284,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 		{
 			// clear the progress info
 			if(GestureInfo != null)
-				GestureInfo.GetComponent<GUIText>().text = String.Empty;
+				GestureInfo.text = String.Empty;
 			
 			progressDisplayed = false;
 
@@ -261,30 +300,50 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
         switch (newState)
         {
             case ApplicationState.Calibration:
-
+				disableTextPrompts();
+				calibrationText.SetActive(true);
+				currentState = newState;
 
 				break;
             case ApplicationState.Follow:
+				disableTextPrompts();
+				FollowingText.SetActive(true);
+				overlayer.followHands = true;
 				//Gestures to add
-				manager.DetectGesture(activeUserId, KinectGestures.Gestures.Jump);
+				//manager.Player1Gestures.Add(KinectGestures.Gestures.Tpose);
+				manager.DetectGesture(activeUserId, KinectGestures.Gestures.Tpose);
+
 				//Gestures to remove
 				manager.DeleteGesture(activeUserId, KinectGestures.Gestures.RaiseLeftHand);
 				manager.DeleteGesture(activeUserId, KinectGestures.Gestures.RaiseRightHand);
 				manager.DeleteGesture(activeUserId, KinectGestures.Gestures.ZoomIn);
 
+				currentState = newState;
+
 				break;
             case ApplicationState.Locked:
+				disableTextPrompts();
+				LockedText.SetActive(true);
+				overlayer.followHands = false;
 				//Gestures to add
 				manager.DetectGesture(activeUserId, KinectGestures.Gestures.RaiseLeftHand);
 				manager.DetectGesture(activeUserId, KinectGestures.Gestures.RaiseRightHand);
 				manager.DetectGesture(activeUserId, KinectGestures.Gestures.ZoomIn);
 				//Gestures to remove
 
-                break;
+				currentState = newState;
+				break;
             case ApplicationState.Null:
                 break;
             default:
                 break;
         }
     }
+	private void disableTextPrompts()
+	{
+		NoUserText.SetActive(false);
+		calibrationText.SetActive(false);
+		FollowingText.SetActive(false);
+		LockedText.SetActive(false);
+	}
 }

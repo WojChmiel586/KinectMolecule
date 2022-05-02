@@ -106,7 +106,7 @@ public class KinectManager : MonoBehaviour
 	private bool Player1Calibrated = false;
 	private bool Player2Calibrated = false;
 	
-	private bool AllPlayersCalibrated = false;
+	public bool AllPlayersCalibrated = false;
 	
 	// Values to track which ID (assigned by the Kinect) is player 1 and player 2.
 	private uint Player1ID;
@@ -465,10 +465,10 @@ public class KinectManager : MonoBehaviour
 	public void DetectGesture(uint UserId, KinectGestures.Gestures gesture)
 	{
 		int index = GetGestureIndex(UserId, gesture);
-		if(index >= 0)
-			DeleteGesture(UserId, gesture);
-		
-		KinectGestures.GestureData gestureData = new KinectGestures.GestureData();
+        if (index >= 0)
+            DeleteGesture(UserId, gesture);
+
+        KinectGestures.GestureData gestureData = new KinectGestures.GestureData();
 		
 		gestureData.userId = UserId;
 		gestureData.gesture = gesture;
@@ -1602,7 +1602,7 @@ public class KinectManager : MonoBehaviour
 		// If all users are calibrated, stop trying to find them.
 		if(AllPlayersCalibrated)
 		{
-			Debug.Log("All players calibrated.");
+			//Debug.Log("All players calibrated.");
 			
 			if(CalibrationText != null)
 			{

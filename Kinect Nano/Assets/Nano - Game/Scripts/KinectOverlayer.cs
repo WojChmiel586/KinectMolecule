@@ -13,17 +13,18 @@ public class KinectOverlayer : MonoBehaviour
 	public KinectWrapper.NuiSkeletonPositionIndex TrackedLeftHand = KinectWrapper.NuiSkeletonPositionIndex.HandLeft;
 	public GameObject OverlayObject;
 	public float smoothFactor = 5f;
+	public bool followHands = false;
 	
 	public GUIText debugText;
 
-	private float distanceToCamera = 10f;
+	[SerializeField]private float distanceToCamera = 20f;
 
 
 	void Start()
 	{
 		if(OverlayObject)
 		{
-			distanceToCamera = (OverlayObject.transform.position - Camera.main.transform.position).magnitude;
+			//distanceToCamera = (OverlayObject.transform.position - Camera.main.transform.position).magnitude;
 		}
 	}
 	
@@ -75,7 +76,7 @@ public class KinectOverlayer : MonoBehaviour
 							debugText.GetComponent<GUIText>().text = "Tracked user ID: " + userId;  // new Vector2(scaleX, scaleY).ToString();
 						}
 						
-						if(OverlayObject)
+						if(OverlayObject && followHands)
 						{
 							Vector3 vPosOverlay = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, distanceToCamera));
 							OverlayObject.transform.position = Vector3.Lerp(OverlayObject.transform.position, vPosOverlay, smoothFactor * Time.deltaTime);

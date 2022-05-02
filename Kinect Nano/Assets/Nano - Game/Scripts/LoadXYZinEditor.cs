@@ -26,7 +26,7 @@ public class LoadXYZinEditor : MonoBehaviour
 
     public GameObject[] atoms;
     public List<GameObject> bonds;
-    public Vector3 center;
+    public Vector3 center { get; private set; }
 
     public string Filename
     {
@@ -120,6 +120,8 @@ public class LoadXYZinEditor : MonoBehaviour
 
         //this.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
 
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
         //load XYZ from file
         string[] lines = System.IO.File.ReadAllLines(objectName);
 
@@ -188,7 +190,7 @@ public class LoadXYZinEditor : MonoBehaviour
                 }
             }
         }
-        transform.position = Vector3.zero;
+        //transform.position = Vector3.zero;
         center = GetCenter();
         atomParent.transform.localScale = currentScale;
         //SaveMolecule();
@@ -217,5 +219,8 @@ public class LoadXYZinEditor : MonoBehaviour
         localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
         PrefabUtility.SaveAsPrefabAssetAndConnect(atomParent, localPath, InteractionMode.UserAction);
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(center, Vector3.one);
+    }
 }

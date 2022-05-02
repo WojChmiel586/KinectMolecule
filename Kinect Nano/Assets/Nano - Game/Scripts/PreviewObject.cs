@@ -16,7 +16,7 @@ public class PreviewObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        center = molecule.GetCenter();
+        center = molecule.center;
         //transform.RotateAround(center, Vector3.right, rotSpeed * Time.deltaTime);
 
 
@@ -26,22 +26,26 @@ public class PreviewObject : MonoBehaviour
         if (Input.mousePosition.y >= Screen.height - 30)
         {
             //transform.Rotate(Vector3.right * Time.deltaTime * rotSpeed, Space.World);
-            transform.RotateAround(center, Vector3.right, rotSpeed * Time.deltaTime);
+            //transform.RotateAround(transform.position, Vector3.right, rotSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.right * Time.deltaTime);
         }
         else if (Input.mousePosition.y < 30)
         {
            // transform.Rotate(-Vector3.right * Time.deltaTime * rotSpeed, Space.World);
-            transform.RotateAround(center, -Vector3.right, rotSpeed * Time.deltaTime);
+            //transform.RotateAround(transform.position, -Vector3.right, rotSpeed * Time.deltaTime);
+            transform.Rotate(-Vector3.right * Time.deltaTime);
         }
         else if (Input.mousePosition.x >= Screen.width - 30)
         {
             //transform.Rotate(-Vector3.up * Time.deltaTime * rotSpeed, Space.World);
-            transform.RotateAround(center, -Vector3.up, rotSpeed * Time.deltaTime);
+            transform.RotateAround(transform.position, -Vector3.up, rotSpeed * Time.deltaTime);
+            transform.Rotate(-Vector3.up * Time.deltaTime);
         }
         else if (Input.mousePosition.x < 30)
         {
             //transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
-            transform.RotateAround(center, Vector3.up, rotSpeed * Time.deltaTime);
+            //transform.RotateAround(transform.position, Vector3.up, rotSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up * Time.deltaTime);
         }
         else
         {

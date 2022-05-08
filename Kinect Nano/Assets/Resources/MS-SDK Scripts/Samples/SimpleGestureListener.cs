@@ -54,7 +54,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
     private void Update()
     {
-		Debug.Log(currentState);
+		//Debug.Log(currentState);
 		IsTpose();
         if (manager!= null)
         {

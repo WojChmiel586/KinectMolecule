@@ -15,24 +15,41 @@ public class LoadFiles : MonoBehaviour
 
     void Awake()
     {
+        if (!Application.isEditor)
+        {
+            Debug.LogError(Application.dataPath);
+        }
         LoadFilesInFolder();
         simpleGestureListener = FindObjectOfType<SimpleGestureListener>();
     }
     public void LoadFilesInFolder()
     {
-        loaderObject = GameObject.FindGameObjectWithTag("LoaderObject");
 
-        if (objectCount > System.IO.Directory.GetFiles("Assets/Nano - Game/Resources/Data").Length)
+
+        loaderObject = GameObject.FindGameObjectWithTag("LoaderObject");
+        string directory = null;
+        if (Application.isEditor)
+        {
+            directory = Application.dataPath + "/Nano - Game/Resources/Data";
+        }
+        else
+        {
+            directory = Application.dataPath + "/Data";
+        }
+        if (objectCount > System.IO.Directory.GetFiles(directory).Length)
         {
             objectCount = 0;
         }
 
         if (objectCount <= 0)
         {
-            objectCount = System.IO.Directory.GetFiles("Assets/Nano - Game/Resources/Data").Length;
+            objectCount = System.IO.Directory.GetFiles(directory).Length;
+
         }
 
-        fileName = System.IO.Directory.GetFiles("Assets/Nano - Game/Resources/Data");
+        fileName = System.IO.Directory.GetFiles(directory);
+
+
         foreach (string file in fileName)
         {
             if (!file.Contains("meta"))

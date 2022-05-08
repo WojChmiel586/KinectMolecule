@@ -996,7 +996,7 @@ public class KinectManager : MonoBehaviour
 			flipMatrix[2, 2] = -1;
 			
 			instance = this;
-			DontDestroyOnLoad(gameObject);
+			//DontDestroyOnLoad(gameObject);
 		}
 		catch(DllNotFoundException e)
 		{
@@ -1097,7 +1097,7 @@ public class KinectManager : MonoBehaviour
 			CalibrationText.GetComponent<GUIText>().text = "WAITING FOR USERS";
 		}
 		
-		Debug.Log("Waiting for users.");
+		//Debug.Log("Waiting for users.");
 			
 		KinectInitialized = true;
 	}
@@ -1113,8 +1113,9 @@ public class KinectManager : MonoBehaviour
 	        // If the players aren't all calibrated yet, draw the user map.
 			if(ComputeUserMap)
 			{
-				if(depthStreamHandle != IntPtr.Zero &&
-					KinectWrapper.PollDepth(depthStreamHandle, KinectWrapper.Constants.IsNearMode, ref usersDepthMap))
+				// &&
+				//KinectWrapper.PollDepth(depthStreamHandle, KinectWrapper.Constants.IsNearMode, ref usersDepthMap)
+				if (depthStreamHandle != IntPtr.Zero)
 				{
 		        	UpdateUserMap();
 				}

@@ -619,12 +619,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &298204676 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7413181093809413409, guid: 24afffbecbe95be41b4ed557c940fa60,
-    type: 3}
-  m_PrefabInstance: {fileID: 853255310}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &329713272
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,6 +925,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1571084795208998324, guid: 225b81d1ad59a944794248935bdd29a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1571084795208998320, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
       propertyPath: m_Enabled
@@ -1000,7 +999,7 @@ PrefabInstance:
         type: 3}
       propertyPath: HandCursor1
       value: 
-      objectReference: {fileID: 298204676}
+      objectReference: {fileID: 0}
     - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
         type: 3}
       propertyPath: DisplayColorMap
@@ -1520,7 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TwoUsers: 0
-  ComputeUserMap: 1
+  ComputeUserMap: 0
   ComputeColorMap: 1
   DisplayUserMap: 1
   DisplayColorMap: 0
@@ -3185,7 +3184,7 @@ MonoBehaviour:
   generalDataLoaded: 1
   BaseMaterial: {fileID: 2100000, guid: 374f7fc393e611f42b1b1c62a25ad445, type: 2}
   atomScale: 1
-  bondWidth: 0.3
+  bondWidth: 0.2
 --- !u!4 &1856121450
 Transform:
   m_ObjectHideFlags: 0

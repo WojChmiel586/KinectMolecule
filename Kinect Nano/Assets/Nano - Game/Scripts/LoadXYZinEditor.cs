@@ -56,7 +56,19 @@ public class LoadXYZinEditor : MonoBehaviour
     public void setXYZName(string name)
     {
         objectName = name;
-        moleculeName.text = name.Remove(0, 34);
+        string clearedName = null;
+        if (Application.isEditor)
+        {
+            clearedName = name.Remove(0, 79);
+            clearedName = clearedName.Remove(clearedName.Length - 4, 4);
+            moleculeName.text = clearedName;
+        }
+        else
+        {
+            clearedName = name.Remove(0, 73);
+            clearedName = clearedName.Remove(clearedName.Length - 4, 4);
+            moleculeName.text = clearedName;
+        }
 
     }
     public void LoadXYZ()
@@ -68,7 +80,16 @@ public class LoadXYZinEditor : MonoBehaviour
 
             if (types.Count == 0)
             {
-                string[] typesData = System.IO.File.ReadAllLines("Assets/Nano - Game/Resources/TypeData/xyz.types");
+                string[] typesData = null;
+                // string[] typesData = System.IO.File.ReadAllLines(Application.dataPath +   "Assets/Nano - Game/Resources/TypeData/xyz.types");
+                if (Application.isEditor)
+                {
+                    typesData = System.IO.File.ReadAllLines(Application.dataPath +   "/Nano - Game/Resources/TypeData/xyz.types");
+                }
+                else
+                {
+                    typesData = System.IO.File.ReadAllLines(Application.dataPath + "/TypeData/xyz.types");
+                }
                 int numTypes = (int)System.Convert.ToDouble(typesData[0]);
                 for (int i = 0; i < numTypes; i++)
                 {
@@ -93,7 +114,16 @@ public class LoadXYZinEditor : MonoBehaviour
             }
             if (materials.Count == 0)
             {
-                string[] coloursData = System.IO.File.ReadAllLines("Assets/Nano - Game/Resources/TypeData/rgb.txt");
+                //                string[] coloursData = System.IO.File.ReadAllLines("Assets/Nano - Game/Resources/TypeData/rgb.txt");
+                string[] coloursData = null;
+                if (Application.isEditor)
+                {
+                    coloursData = System.IO.File.ReadAllLines((Application.dataPath + "/Nano - Game/Resources/TypeData/rgb.txt"));
+                }
+                else
+                {
+                    coloursData = System.IO.File.ReadAllLines(Application.dataPath + "/TypeData/rgb.txt");
+                }
                 int numCols = coloursData.Length;
                 for (int i = 0; i < numCols; i++)
                 {
@@ -220,9 +250,9 @@ public class LoadXYZinEditor : MonoBehaviour
     void SaveMolecule()
     {
         //string localPath = "Assets/Nano - Game/Resources/SavedModels/" + objectName + ".prefab";
-        string localPath = "Assets/test.prefab";
-        localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-        PrefabUtility.SaveAsPrefabAssetAndConnect(atomParent, localPath, InteractionMode.UserAction);
+        //string localPath = "Assets/test.prefab";
+        //localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+        //PrefabUtility.SaveAsPrefabAssetAndConnect(atomParent, localPath, InteractionMode.UserAction);
     }
     private void OnDrawGizmos()
     {

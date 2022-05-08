@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Nano - Game/Scenes/FinalScenes/OverlayStuff.unity
+    guid: 2193b50916f8eb140b56f97ed112e928
   m_configObjects: {}

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Text;
+using TMPro;
 
 
 public class KinectManager : MonoBehaviour
@@ -96,7 +97,7 @@ public class KinectManager : MonoBehaviour
 	public bool ControlMouseCursor = false;
 
 	// GUI Text to show gesture debug message.
-	public GUIText GesturesDebugText;
+	public TextMeshProUGUI GesturesDebugText;
 	
 
 	// Bool to keep track of whether Kinect has been initialized
@@ -1867,7 +1868,7 @@ public class KinectManager : MonoBehaviour
 							sDebugGestures += string.Format("\n HipRight: {0}", player1JointsTracked[(int)KinectWrapper.NuiSkeletonPositionIndex.HipRight] ?
 							                                player1JointsPos[(int)KinectWrapper.NuiSkeletonPositionIndex.HipRight].ToString() : "");
 
-							GesturesDebugText.GetComponent<GUIText>().text = sDebugGestures;
+							GesturesDebugText.text = sDebugGestures;
 						}
 					}
 				}

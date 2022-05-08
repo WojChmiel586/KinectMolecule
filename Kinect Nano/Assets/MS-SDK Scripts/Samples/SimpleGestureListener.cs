@@ -16,7 +16,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 		Null
     }
 	// GUI Text to display the gesture messages.
-	public Text GestureInfo;
+	public TextMeshProUGUI GestureInfo;
 	[SerializeField]public ApplicationState currentState { get; private set; }
 
 	public ZoomInOut zoomRef;
@@ -26,10 +26,9 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 	private bool progressDisplayed;
 	private KinectOverlayer overlayer;
 
-	[SerializeField]private GameObject NoUserText;
-	[SerializeField]private GameObject calibrationText;
-	[SerializeField]private GameObject FollowingText;
-	[SerializeField]private GameObject LockedText;
+	[SerializeField]private TextMeshProUGUI StatusText;
+	[SerializeField]private GameObject LockedOverlay;
+	[SerializeField]private GameObject FollowingOverlay;
 
 
     private bool jump;
@@ -48,7 +47,7 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
     private void Start()
     {
-		NoUserText.SetActive(true);
+		//StatusText.SetActive(true);
 		overlayer = GetComponent<KinectOverlayer>();
 
 	}
@@ -300,14 +299,15 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
         switch (newState)
         {
             case ApplicationState.Calibration:
-				disableTextPrompts();
-				calibrationText.SetActive(true);
+				//calibrationText.SetActive(true);
 				currentState = newState;
 
 				break;
             case ApplicationState.Follow:
-				disableTextPrompts();
-				FollowingText.SetActive(true);
+				SetStatusText("Following Hands");
+				FollowingOverlay.SetActive(true);
+				LockedOverlay.SetActive(false);
+				//FollowingText.SetActive(true);
 				overlayer.followHands = true;
 				//Gestures to add
 				//manager.Player1Gestures.Add(KinectGestures.Gestures.Tpose);
@@ -320,10 +320,13 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
 
 				currentState = newState;
 
+
 				break;
             case ApplicationState.Locked:
-				disableTextPrompts();
-				LockedText.SetActive(true);
+				SetStatusText("Locked");
+				FollowingOverlay.SetActive(false);
+				LockedOverlay.SetActive(true);
+				//LockedText.SetActive(true);
 				overlayer.followHands = false;
 				//Gestures to add
 				manager.DetectGesture(activeUserId, KinectGestures.Gestures.RaiseLeftHand);
@@ -339,11 +342,9 @@ public class SimpleGestureListener : MonoBehaviour, KinectGestures.GestureListen
                 break;
         }
     }
-	private void disableTextPrompts()
+	private void SetStatusText(string text)
 	{
-		NoUserText.SetActive(false);
-		calibrationText.SetActive(false);
-		FollowingText.SetActive(false);
-		LockedText.SetActive(false);
+		//StatusText.SetActive(false);
+		StatusText.text = text;
 	}
 }

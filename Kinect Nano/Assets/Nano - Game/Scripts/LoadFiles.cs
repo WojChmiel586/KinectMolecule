@@ -58,7 +58,8 @@ public class LoadFiles : MonoBehaviour
     }
     public void LoadObject()
     {
-        loaderObject.GetComponent<LoadXYZinEditor>().objectName = filesToUse[usableFIles];
+        //loaderObject.GetComponent<LoadXYZinEditor>().objectName = filesToUse[usableFIles];
+        loaderObject.GetComponent<LoadXYZinEditor>().setXYZName(filesToUse[usableFIles]);
         loaderObject.GetComponent<LoadXYZinEditor>().LoadXYZ();
     }
     public void NextMol()

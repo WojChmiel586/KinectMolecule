@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using TMPro;
 
 public class AtomType
 {
@@ -23,6 +24,7 @@ public class LoadXYZinEditor : MonoBehaviour
 
     public string filename;
     public string objectName;
+    public TextMeshProUGUI moleculeName;
 
     public GameObject[] atoms;
     public List<GameObject> bonds;
@@ -54,6 +56,8 @@ public class LoadXYZinEditor : MonoBehaviour
     public void setXYZName(string name)
     {
         objectName = name;
+        moleculeName.text = name.Remove(0, 34);
+
     }
     public void LoadXYZ()
     {
@@ -191,8 +195,9 @@ public class LoadXYZinEditor : MonoBehaviour
             }
         }
         //transform.position = Vector3.zero;
-        center = GetCenter();
+
         atomParent.transform.localScale = currentScale;
+        center = GetCenter();
         //SaveMolecule();
         //AssetDatabase.CreateAsset(atoms[0], "Assets/test.asset");
         //AssetDatabase.SaveAssets();

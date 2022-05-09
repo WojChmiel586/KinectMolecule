@@ -908,314 +908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790675589}
   m_CullTransparentMesh: 0
---- !u!1001 &819168466
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1571084795208998324, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_Name
-      value: Gestures Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998324, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998324, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998320, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -26.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998321, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: HandCursor1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: DisplayColorMap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: DisplayUserMap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: DisplaySkeletonLines
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: HandCursor2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[3]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[2]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: ComputeUserMap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: ComputeColorMap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[0]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: ControlMouseCursor
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: smoothing
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[6]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[7]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[4]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1CalibrationPose
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: Player1Gestures.Array.data[5]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: UseClippedLegsFilter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: GesturesDebugText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: SensorAngle
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998334, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: TwoUsers
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: GestureInfo
-      value: 
-      objectReference: {fileID: 215705675}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: zoomRef
-      value: 
-      objectReference: {fileID: 819168469}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: NoUserText
-      value: 
-      objectReference: {fileID: 2065262143}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: calibrationText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: FollowingText
-      value: 
-      objectReference: {fileID: 922069327}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: LockedText
-      value: 
-      objectReference: {fileID: 329713272}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: StatusText
-      value: 
-      objectReference: {fileID: 2065262145}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: LockedOverlay
-      value: 
-      objectReference: {fileID: 329713272}
-    - target: {fileID: 1571084795208998335, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: FollowingOverlay
-      value: 
-      objectReference: {fileID: 922069327}
-    - target: {fileID: 1571084795208998332, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: zoom
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571084795208998332, guid: 225b81d1ad59a944794248935bdd29a8,
-        type: 3}
-      propertyPath: gestureCam
-      value: 
-      objectReference: {fileID: 819168467}
-    m_RemovedComponents:
-    - {fileID: 1571084795208998325, guid: 225b81d1ad59a944794248935bdd29a8, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: 225b81d1ad59a944794248935bdd29a8, type: 3}
---- !u!1 &819168467 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1571084795208998324, guid: 225b81d1ad59a944794248935bdd29a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 819168466}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &819168468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819168467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e668e28abcfb0ae439f4ead584aba85b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadedObject: {fileID: 1856121447}
-  myList:
-  - {fileID: 1856121447}
---- !u!114 &819168469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1571084795208998332, guid: 225b81d1ad59a944794248935bdd29a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 819168466}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819168467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219622f4f13868d4d891aaeb4a488e7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &819168476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819168467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b214f137e3db1904cb260afce1e0b463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundImage: {fileID: 257659272}
-  TrackedRightHand: 11
-  TrackedLeftHand: 7
-  OverlayObject: {fileID: 1856121447}
-  smoothFactor: 10
-  followHands: 0
-  debugText: {fileID: 0}
-  distanceToCamera: 100
 --- !u!1001 &853255310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,6 +1115,10 @@ GameObject:
   - component: {fileID: 999714148}
   - component: {fileID: 999714147}
   - component: {fileID: 999714152}
+  - component: {fileID: 999714156}
+  - component: {fileID: 999714155}
+  - component: {fileID: 999714154}
+  - component: {fileID: 999714153}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1453,7 +1149,7 @@ Behaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999714146}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &999714150
 Camera:
   m_ObjectHideFlags: 0
@@ -1526,7 +1222,7 @@ MonoBehaviour:
   TwoUsers: 0
   ComputeUserMap: 1
   ComputeColorMap: 1
-  DisplayUserMap: 0
+  DisplayUserMap: 1
   DisplayColorMap: 1
   DisplaySkeletonLines: 1
   DisplayMapsWidthPercent: 20
@@ -1535,7 +1231,7 @@ MonoBehaviour:
   MinUserDistance: 1
   MaxUserDistance: 0
   DetectClosestUser: 1
-  IgnoreInferredJoints: 1
+  IgnoreInferredJoints: 0
   smoothing: 3
   UseBoneOrientationsFilter: 0
   UseClippedLegsFilter: 1
@@ -1543,18 +1239,86 @@ MonoBehaviour:
   UseSelfIntersectionConstraint: 0
   Player1Avatars: []
   Player2Avatars: []
-  Player1CalibrationPose: 0
+  Player1CalibrationPose: 2
   Player2CalibrationPose: 0
   Player1Gestures: 
   Player2Gestures: 
   MinTimeBetweenGestures: 0.7
-  GestureListeners: []
-  CalibrationText: {fileID: 2086377467}
+  GestureListeners:
+  - {fileID: 0}
+  CalibrationText: {fileID: 0}
   HandCursor1: {fileID: 0}
   HandCursor2: {fileID: 0}
   ControlMouseCursor: 0
   GesturesDebugText: {fileID: 0}
   AllPlayersCalibrated: 0
+--- !u!114 &999714153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999714146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b214f137e3db1904cb260afce1e0b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 257659272}
+  TrackedRightHand: 11
+  TrackedLeftHand: 7
+  OverlayObject: {fileID: 1856121447}
+  smoothFactor: 10
+  followHands: 0
+  debugText: {fileID: 0}
+  distanceToCamera: 100
+--- !u!114 &999714154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999714146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e668e28abcfb0ae439f4ead584aba85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadedObject: {fileID: 1856121447}
+  myList:
+  - {fileID: 1856121447}
+--- !u!114 &999714155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999714146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219622f4f13868d4d891aaeb4a488e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smooth: 5
+  zoomValue: 1
+  gestureCam: {fileID: 999714146}
+--- !u!114 &999714156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999714146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b9637035d55784cbbe08ec594f34d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GestureInfo: {fileID: 215705675}
+  zoomRef: {fileID: 999714155}
+  StatusText: {fileID: 2065262145}
+  LockedOverlay: {fileID: 329713272}
+  FollowingOverlay: {fileID: 922069327}
 --- !u!1 &1007327208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,7 +1795,7 @@ PrefabInstance:
     - target: {fileID: 2537245056638804135, guid: fad9b142883d5a64996fdbea6f406ccc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2537245056638804135, guid: fad9b142883d5a64996fdbea6f406ccc,
         type: 3}
@@ -3203,7 +2967,7 @@ Transform:
   m_Children:
   - {fileID: 243694606}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1856121451
 MonoBehaviour:

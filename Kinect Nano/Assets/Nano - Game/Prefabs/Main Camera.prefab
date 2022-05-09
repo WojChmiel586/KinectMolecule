@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 1571084795208998320}
   - component: {fileID: 1571084795208998323}
   - component: {fileID: 1571084795208998322}
-  - component: {fileID: 1571084795208998325}
   - component: {fileID: 1571084795208998334}
   - component: {fileID: 1571084795208998335}
   - component: {fileID: 1571084795208998332}
+  - component: {fileID: 819168468}
+  - component: {fileID: 819168476}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +45,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571084795208998324}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
@@ -96,14 +97,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571084795208998324}
   m_Enabled: 1
---- !u!81 &1571084795208998325
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571084795208998324}
-  m_Enabled: 1
 --- !u!114 &1571084795208998334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,21 +117,21 @@ MonoBehaviour:
   DisplaySkeletonLines: 1
   DisplayMapsWidthPercent: 20
   SensorHeight: 1
-  SensorAngle: 0
+  SensorAngle: 20
   MinUserDistance: 1
   MaxUserDistance: 0
   DetectClosestUser: 1
   IgnoreInferredJoints: 0
-  smoothing: 1
+  smoothing: 3
   UseBoneOrientationsFilter: 0
-  UseClippedLegsFilter: 0
+  UseClippedLegsFilter: 1
   UseBoneOrientationsConstraint: 1
   UseSelfIntersectionConstraint: 0
   Player1Avatars: []
   Player2Avatars: []
-  Player1CalibrationPose: 0
+  Player1CalibrationPose: 2
   Player2CalibrationPose: 0
-  Player1Gestures: 08000000090000000c0000000d000000070000000f000000
+  Player1Gestures: 
   Player2Gestures: 
   MinTimeBetweenGestures: 0.7
   GestureListeners:
@@ -146,8 +139,9 @@ MonoBehaviour:
   CalibrationText: {fileID: 0}
   HandCursor1: {fileID: 0}
   HandCursor2: {fileID: 0}
-  ControlMouseCursor: 1
+  ControlMouseCursor: 0
   GesturesDebugText: {fileID: 0}
+  AllPlayersCalibrated: 0
 --- !u!114 &1571084795208998335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GestureInfo: {fileID: 0}
+  zoomRef: {fileID: 1571084795208998332}
+  StatusText: {fileID: 0}
+  LockedOverlay: {fileID: 0}
+  FollowingOverlay: {fileID: 0}
 --- !u!114 &1571084795208998332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +171,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219622f4f13868d4d891aaeb4a488e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoom: 20
-  normal: 60
   smooth: 5
+  zoomValue: 1
+  gestureCam: {fileID: 1571084795208998324}
+--- !u!114 &819168468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571084795208998324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e668e28abcfb0ae439f4ead584aba85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadedObject: {fileID: 0}
+  myList:
+  - {fileID: 0}
+--- !u!114 &819168476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571084795208998324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b214f137e3db1904cb260afce1e0b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
+  TrackedRightHand: 11
+  TrackedLeftHand: 7
+  OverlayObject: {fileID: 0}
+  smoothFactor: 10
+  followHands: 0
+  debugText: {fileID: 0}
+  distanceToCamera: 100

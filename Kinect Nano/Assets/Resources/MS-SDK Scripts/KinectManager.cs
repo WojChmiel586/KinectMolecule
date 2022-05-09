@@ -1147,7 +1147,7 @@ public class KinectManager : MonoBehaviour
 				}
 					
 				// Check for complete gestures
-				foreach(KinectGestures.GestureData gestureData in player1Gestures)
+				foreach(KinectGestures.GestureData gestureData in player1Gestures.ToArray())
 				{
 					if(gestureData.complete)
 					{
